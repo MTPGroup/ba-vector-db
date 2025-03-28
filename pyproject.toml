@@ -7,11 +7,13 @@ requires-python = ">=3.12"
 dependencies = [
   "asyncio>=3.4.3",
   "dashscope>=1.22.2",
+  "fastapi>=0.115.12",
   "httpx>=0.28.1",
   "jieba>=0.42.1",
   "loguru>=0.7.3",
   "pymilvus>=2.5.6",
   "rich>=13.9.4",
+  "uvicorn>=0.34.0",
 ]
 
 [tool.basedpyright]
@@ -22,4 +24,4 @@ quote-style = "single"
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "UP", "C", "T", "PYI", "PT", "Q"]
-ignore = ["E402", "C901", "F401", "Q000", "UP105"]
+ignore = ["E402", "C901", "F401", "Q000"]

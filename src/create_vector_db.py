@@ -193,7 +193,8 @@ def create_milvus_collection() -> MilvusClient:
     """创建Milvus集合"""
     try:
         # 连接Milvus服务
-        client = MilvusClient(str(Path(__file__).parents[1] / "data/ba_milvus.db"))
+        # client = MilvusClient(str(Path(__file__).parents[1] / "data/ba_milvus.db"))
+        client = MilvusClient(f"http://{MILVUS_HOST}:{MILVUS_PORT}")
 
         # 检查集合是否存在，如果存在则删除
         if client.has_collection(COLLECTION_NAME):
@@ -224,10 +225,10 @@ def create_milvus_collection() -> MilvusClient:
         index_params = IndexParams()
         index_params.add_index(
             field_name="embedding",
-            index_type="AUTOINDEX",
-            # index_type="HNSW",
-            # metric_type="COSINE",
-            # params={"M": 8, "efConstruction": 64},
+            # index_type="AUTOINDEX",
+            index_type="HNSW",
+            metric_type="COSINE",
+            params={"M": 8, "efConstruction": 64},
         )
         client.create_index(COLLECTION_NAME, index_params=index_params)
 
